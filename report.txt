@@ -1,0 +1,23 @@
+Tanmay 2020CS10399
+Shivam 2020CS10383
+
+The core idea to solve the problem is that first of all we have to find an algorithm that could reach as close as possible to global minima in as low time as possible. So for a time limit of 2 sec, the algorithm results in good accuracy.
+After that, it can switch to an algorithm that will reach global minima in infinite time.
+(Minima above refers to the cost function of self.best_state)
+
+Now for a fast and quite good accuracy algorithm, the first thing which comes to mind is hill climbing.
+Therefore first, an algorithm that is performed is hill climbing towards the best neighbor. And in this case, two states are neighbors if there is a difference in one character between the states.
+After that whenever the algorithm is stuck on local minima or valleys, it stops hill climbing.
+Now, the next algorithm is minimising the cost function for a sentence of three consecutive words.
+For all three words sequence, it hill climbs towards the best neighbor. And in this case, two states are neighbors if there is a difference of at most two characters between the states.
+So in short, what it does is break the sentence into a list of sentences of three words and find the minimum cost state for all the sentences.
+Then it merges back the list of sentences.
+But it might happen that, after the first algorithm, we reach a local minimum which is very far from global minima, and in this case after performing the second algorithm also, there are chances that it might not reach good minima.
+Hence, again the second algorithm is performed but its stating state is the state which is given at the very first start of the algorithm.
+Using this strategy, accuracy on given sample test cases is reached 100%. But for new self-generated test cases (statements taken from corpus.txt) its accuracy is 99.6-100%.
+
+Finally, to make everything work, we decided, for every word in the sentence, we will find some k the best possible words and then use those possible k words for every word to find the best sentence.
+Again to find k best possible words for a given word, we tried to use all changes possible for each character. And take those words whose cost function is minimum.
+And now the final step is doing a local search on the sentence and now two states are neighbors if there is a difference of one word.
+And now in an infinite loop, we played this algorithm starting from k = 100, and k is changed to 4 * k after every iteration.
+Using this strategy, after 10s, in almost every test case generated, we reached an accuracy of 100%.
