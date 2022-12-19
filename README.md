@@ -1,0 +1,1 @@
+# Automated-Correction-of-Incorrectly-Recognised-Text
